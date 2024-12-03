@@ -1,0 +1,23 @@
+.reports.list tr.draft td.status { color: #999; }
+.reports.list tr.in_progress td.status { color: #0066cc; }
+.reports.list tr.generated td.status { color: #ff9900; }
+.reports.list tr.approved td.status { color: #4CAF50; }
+
+.reports.list tr:hover { background-color: #f6f6f6; }
+
+.sticky-headers thead tr {
+    position: sticky;
+    top: 0;
+    background: white;
+    z-index: 1;
+}
+
+@media screen and (max-width: 1024px) {
+    .autoscroll {
+        overflow-x: auto;
+    }
+
+    .reports.list {
+        min-width: 1024px;
+    }
+}

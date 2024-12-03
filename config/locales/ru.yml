@@ -1,0 +1,16 @@
+ru:
+  label_reports: "Отчеты"
+  label_report_new: "Новый отчет"
+
+  reports:
+    period_types:
+      monthly: "Месячный"
+      quarterly: "Квартальный"
+      yearly: "Годовой"
+      other: "Прочее"
+
+    statuses:
+      draft: "Черновик"
+      in_progress: "В работе"
+      generated: "Сформирован"
+      approved: "Утвержден"

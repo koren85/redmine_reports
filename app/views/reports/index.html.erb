@@ -1,0 +1,73 @@
+<% html_title l(:label_reports) %>
+
+<div class="contextual">
+  <%= link_to l(:label_report_new), new_report_path, class: 'icon icon-add' if User.current.allowed_to?(:manage_reports, nil, global: true) %>
+</div>
+
+<h2 class="reports"><%= l(:label_reports) %></h2>
+
+<%= form_tag reports_path, method: :get, id: 'query_form', remote: true do %>
+  <div class="query_form">
+    <fieldset id="filters" class="collapsible">
+      <legend onclick="toggleFieldset(this);"><%= l(:label_filter_plural) %></legend>
+      <div>
+        <table>
+          <tr>
+            <td><%= l(:field_period_type) %></td>
+            <td><%= select_tag 'period_type',
+                               options_for_select(Report.period_types_for_select, params[:period_type]),
+                               include_blank: true %></td>
+          </tr>
+          <tr>
+            <td><%= l(:field_status) %></td>
+            <td><%= select_tag 'status',
+                               options_for_select(Report.statuses_for_select, params[:status]),
+                               multiple: true %></td>
+          </tr>
+          <!-- Другие фильтры -->
+        </table>
+      </div>
+    </fieldset>
+  </div>
+<% end %>
+
+<div class="autoscroll">
+  <table class="list reports sticky-headers">
+    <thead>
+    <tr>
+      <%= sort_header_tag('id', caption: '#') %>
+      <%= sort_header_tag('name', caption: l(:field_name)) %>
+      <%= sort_header_tag('period_type', caption: l(:field_period_type)) %>
+      <%= sort_header_tag('period_start', caption: l(:field_period_start)) %>
+      <%= sort_header_tag('period_end', caption: l(:field_period_end)) %>
+      <%= sort_header_tag('status', caption: l(:field_status)) %>
+      <%= sort_header_tag('created_at', caption: l(:field_created_on)) %>
+      <%= sort_header_tag('created_by_id', caption: l(:field_created_by)) %>
+      <%= sort_header_tag('updated_at', caption: l(:field_updated_on)) %>
+      <%= sort_header_tag('updated_by_id', caption: l(:field_updated_by)) %>
+      <%= sort_header_tag('total_hours', caption: l(:field_total_hours)) %>
+      <%= sort_header_tag('contract_number', caption: l(:field_contract_number)) %>
+    </tr>
+    </thead>
+    <tbody>
+    <% @reports.each do |report| %>
+      <tr class="<%= cycle('odd', 'even') %> <%= report.status %>">
+        <td class="id"><%= report.id %></td>
+        <td class="name"><%= link_to report.name, report_path(report) %></td>
+        <td class="period_type"><%= l("reports.period_types.#{report.period_type}") %></td>
+        <td class="period_start"><%= format_date(report.period_start) %></td>
+        <td class="period_end"><%= format_date(report.period_end) %></td>
+        <td class="status"><%= l("reports.statuses.#{report.status}") %></td>
+        <td class="created_on"><%= format_time(report.created_at) %></td>
+        <td class="created_by"><%= link_to_user report.created_by %></td>
+        <td class="updated_on"><%= format_time(report.updated_at) %></td>
+        <td class="updated_by"><%= link_to_user report.updated_by %></td>
+        <td class="total_hours"><%= number_with_precision(report.total_hours, precision: 2) %></td>
+        <td class="contract_number"><%= report.contract_number %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<span class="pagination"><%= pagination_links_full @reports_pages, @reports_count %></span>
