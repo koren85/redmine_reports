@@ -1,0 +1,11 @@
+<fieldset>
+  <legend><%= l(:label_reports_settings) %></legend>
+  <div class="box tabular">
+    <p>
+      <%= label_tag 'settings[default_per_page]', l(:label_reports_per_page) %>
+      <%= select_tag 'settings[default_per_page]',
+                     options_for_select([25, 50, 100], @settings['default_per_page']),
+                     class: 'small' %>
+    </p>
+  </div>
+</fieldset>
