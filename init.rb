@@ -18,4 +18,18 @@ Redmine::Plugin.register :redmine_reports do
     permission :view_reports, reports: [:index]
     permission :manage_reports, reports: [:index, :new, :create, :edit, :update, :destroy]
   end
+
+  settings default: {
+    'default_per_page' => '25'
+  }, partial: 'settings/reports_settings'
+
+  # Регистрация стилей
+  requires_redmine_plugin :redmine_base_deface, :version_or_higher => '0.0.1'
+
+
+end
+
+# Подключение стилей и скриптов
+Rails.application.config.after_initialize do
+  require_dependency 'reports_hook_listener'
 end

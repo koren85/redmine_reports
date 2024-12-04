@@ -1,16 +1,61 @@
+# config/locales/ru.yml
 ru:
+  # Общие переводы
   label_reports: "Отчеты"
   label_report_new: "Новый отчет"
-
+  label_reports_settings: "Настройки отчетов"
+  label_reports_per_page: "Записей на странице"
+  
+  # Права доступа
+  permission_view_reports: "Просмотр отчетов"
+  permission_manage_reports: "Управление отчетами"
+  
+  # Поля таблицы
+  field_report_id: "ID"
+  field_report_name: "Название отчета"
+  field_period_type: "Период"
+  field_period_start: "Дата начала периода"
+  field_period_end: "Дата окончания периода"
+  field_report_status: "Статус"
+  field_created_on: "Дата создания"
+  field_created_by: "Создал"
+  field_updated_on: "Последнее обновление"
+  field_updated_by: "Обновил"
+  field_total_hours: "Общее количество часов"
+  field_contract_number: "Номер контракта"
+  
+  # Типы периодов
   reports:
     period_types:
       monthly: "Месячный"
       quarterly: "Квартальный"
       yearly: "Годовой"
       other: "Прочее"
-
+    
+    # Статусы
     statuses:
       draft: "Черновик"
       in_progress: "В работе"
       generated: "Сформирован"
       approved: "Утвержден"
+    
+    # Фильтры
+    filters:
+      period_type: "Тип периода"
+      status: "Статус"
+      period: "Период"
+      period_start: "Начало периода"
+      period_end: "Конец периода"
+      contract: "Номер контракта"
+      creator: "Создатель"
+    
+    # Системные сообщения
+    messages:
+      no_reports: "Отчеты не найдены"
+      loading: "Загрузка..."
+      created: "Отчет успешно создан"
+      updated: "Отчет успешно обновлен"
+      deleted: "Отчет успешно удален"
+      error_create: "Ошибка при создании отчета"
+      error_update: "Ошибка при обновлении отчета"
+      error_delete: "Ошибка при удалении отчета"

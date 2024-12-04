@@ -1,2 +1,5 @@
-# Plugin's routes
-# See: http://guides.rubyonrails.org/routing.html
+resources :reports do
+  collection do
+    get 'filter'
+  end
+end
